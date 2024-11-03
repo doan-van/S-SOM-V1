@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+ssom/__init__.py
+ssom/ssom.py
+ssom.egg-info/PKG-INFO
+ssom.egg-info/SOURCES.txt
+ssom.egg-info/dependency_links.txt
+ssom.egg-info/requires.txt
+ssom.egg-info/top_level.txt

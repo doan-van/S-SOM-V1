@@ -20,6 +20,8 @@ from sompy import *
 var = 'PMSL' # mean sea level pressure
 ifile = 'PMSL_all.nc' # input file in netcdf format
 
+
+
 # reading and processing input data
 d1 = xr.open_dataset(ifile)[var] 
 d1.lon2d.values[d1.lon2d.values < 0] = d1.lon2d.values[d1.lon2d.values < 0] + 360
