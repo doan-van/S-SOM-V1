@@ -4,7 +4,7 @@ import random as rand
 class SSOM:
     def __init__(self, grid_size=10, num_iterations=100, 
                  max_learning_rate=0.1, learning_decay=0.25, neighborhood_decay=0.5, 
-                 metric="euclidean", grid_shape="2D", log_interval=None):
+                 metric="euclidean", grid_shape="2D", log_interval=10):
         """
         Initialize the Self-Organizing Map (SOM) with specified parameters.
         
@@ -25,15 +25,8 @@ class SSOM:
         self.learning_decay = learning_decay
         self.neighborhood_decay = neighborhood_decay
         self.metric = metric
+        self.log_interval = log_interval  # Interval for logging outputs
 
-        # Set default log_interval to keep total logs under 100, unless specified by user
-        max_logs = 100
-        if log_interval is None or log_interval > num_iterations:
-            self.log_interval = max(1, num_iterations // max_logs)
-        else:
-            self.log_interval = log_interval
-            
-                
         # Initialize logging lists to store historical values
         self.som_grid_history = []
         self.neighborhood_influence_history = []
@@ -53,25 +46,6 @@ class SSOM:
             self.grid_indices = self._initialize_grid_indices()
         else:
             raise ValueError("grid_shape must be either '1D' or '2D'")
-        
-        # Print initial settings
-        self._print_initial_settings()
-
-    def _print_initial_settings(self):
-        """Prints the initial settings of the SSOM instance."""
-        print("SSOM Initial Settings:")
-        print(f"  Grid Shape: {self.grid_shape}")
-        if self.grid_shape == "2D":
-            print(f"  Grid Size: {self.grid_rows}x{self.grid_cols}")
-        else:
-            print(f"  Grid Size: {self.grid_size}")
-        print(f"  Number of Iterations: {self.num_iterations}")
-        print(f"  Max Learning Rate: {self.max_learning_rate}")
-        print(f"  Learning Decay: {self.learning_decay}")
-        print(f"  Neighborhood Decay: {self.neighborhood_decay}")
-        print(f"  Metric: {self.metric}")
-        print(f"  Log Interval: {self.log_interval}")
-        print()
 
     def _initialize_grid_indices(self):
         """Create an index map for the 2D grid, storing row and column indices for each cell."""
@@ -87,7 +61,6 @@ class SSOM:
             self.som_grid = np.random.uniform(low=0, high=1, size=(self.grid_size, num_input_dims))
         elif self.grid_shape == "2D":
             self.som_grid = np.random.uniform(low=0, high=1, size=(self.grid_rows, self.grid_cols, num_input_dims))
-        print("Initialized SOM grid with random weights.")
 
     def ssim(self, x, y, C1=0.01**2, C2=0.03**2):
         """Compute the Structural Similarity Index (SSIM) between two 2D numpy arrays."""
@@ -186,16 +159,6 @@ class SSOM:
 
             # Log the step, BMU, som_grid, neighborhood_influence, learning_rate, and selected data point at each interval
             if iteration % self.log_interval == 0 or iteration == self.num_iterations - 1:
-
-                # Calculate the progress bar length based on the current iteration
-                progress_length = 50  # Length of the progress bar
-                filled_length = int(round(progress_length * (iteration + 1) / self.num_iterations))  # Round to avoid leftover "-"
-                bar = '=' * filled_length + '-' * (progress_length - filled_length)
-                
-                # Print progress bar, current iteration, and learning rate in one line
-                print(f"\rIter {iteration + 1}/{self.num_iterations} [{bar}]  LearnRate: {current_learning_rate:.4f}", end='', flush=True)
-
-
                 self.step_history.append(iteration)
                 self.bmu_history.append(bmu_index)
                 self.som_grid_history.append(np.copy(self.som_grid))
@@ -203,19 +166,8 @@ class SSOM:
                 self.learning_rate_history.append(current_learning_rate)
                 self.selected_data_point_history.append(selected_patch)  # Log selected data point
 
-            # Print a new line when the training is complete
-            if iteration == self.num_iterations - 1:
-                print()  # Move to the next line after the final iteration
-    
         # Map each input sample to its BMU and store it in self.sample_bmu_mapping
         self.sample_bmu_mapping = []
         for i, sample in enumerate(input_data):
             bmu_index = self.find_bmu(sample)
             self.sample_bmu_mapping.append((i, bmu_index))
-
-
-    
-
-
-
-
