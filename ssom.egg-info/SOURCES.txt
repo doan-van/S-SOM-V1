@@ -2,7 +2,9 @@ LICENSE
 README.md
 setup.py
 ssom/__init__.py
+ssom/som2.py
 ssom/ssom.py
+ssom/ssom1.py
 ssom.egg-info/PKG-INFO
 ssom.egg-info/SOURCES.txt
 ssom.egg-info/dependency_links.txt
