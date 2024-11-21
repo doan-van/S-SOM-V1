@@ -73,7 +73,7 @@ som = SSOM(grid_size=(10, 10))
 To begin, create a new instance of the SSOM as described above. The grid size and input dimension should match your use case. For example, if you want to work with RGB images, `input_dim` should be 3.
 
 ```python
-# Initialize a 2D SSOM with a 10x10 grid for 3-dimensional input data
+# Initialize a 2D SSOM with a 10x10 grid 
 som = SSOM(grid_size=(10, 10))
 ```
 
@@ -88,24 +88,11 @@ import numpy as np
 data = np.random.rand(100, 3)
 
 # Train the SSOM with the data
-som.train(data, num_iterations=1000)
+som.train(data)
 ```
 
 - **`data`**: A NumPy array where each row represents an input vector (e.g., 100 data points of RGB colors).
-- **`num_iterations`**: The number of iterations to train the SSOM.
 
-#### Step 3: Visualizing the SSOM
-
-Once trained, you can visualize the results using the `visualize` method:
-
-```python
-import matplotlib.pyplot as plt
-
-# Visualize the trained SSOM
-som.visualize()
-plt.show()
-```
-The `visualize()` method creates a plot showing how the nodes in the SSOM are organized. This can help you understand how different input data points are grouped within the map.
 
 ### Advanced Features
 
