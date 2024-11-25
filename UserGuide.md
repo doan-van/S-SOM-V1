@@ -1,18 +1,3 @@
----
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.16.4
-kernelspec:
-  display_name: Python 3 (ipykernel)
-  language: python
-  name: python3
----
-
-
 # **SSOM User Guide**
 
 The `SSOM` class implements a **Self-Organizing Map (SOM)**, a type of artificial neural network used for unsupervised learning. This manual explains each method and argument in the class.
@@ -133,7 +118,7 @@ print(som.som_grid)
 
 ---
 
-#### `sample_bmu_mapping`**
+#### `sample_bmu_mapping`
 
 ##### **Description**
 - The `sample_bmu_mapping` is a list of tuples, each containing:
@@ -152,7 +137,7 @@ for sample_index, bmu_index in som.sample_bmu_mapping:
     print(f"Sample {sample_index} maps to BMU at index {bmu_index}")
 ```
 
-+++
+---
 
 
 ## **Other Methods**

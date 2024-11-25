@@ -37,17 +37,21 @@ pip install numpy matplotlib
 
 **`There are three methods to install or use the library`**
 
-*`1. Install directly from this Github account`*
+`1. Install directly from this Github account`
 
 ```bash
 pip install git+https://github.com/doan-van/S-SOM-V1.git
 ```
-You can install the SSOM library from GitHub:
+* Note: This can work only if you have **`git`** alread-installed in your PC.
 
-*`2. Download source code and install it from local directory.`*
+`2. Download source code and install it from local directory.`
+
+
 ```bash
 git clone https://github.com/doan-van/S-SOM-V1.git
 ```
+* Note: This can work only if you have **`git`** alread-installed in your PC.
+* Otherwise, you have to download whole package manually and extract it to your favorite place in your PC.
 
 Navigate to the cloned directory and install the library locally:
 
@@ -55,12 +59,12 @@ Navigate to the cloned directory and install the library locally:
 cd S-SOM-V1
 pip install .
 ```
-*`3. Alternatively, download the `ssom.py` file from this GitHub repository and add it to your working directory.`*
+`3. Alternatively, download the `ssom.py` file from this GitHub repository and add it to your working directory.`
 
 
 ### Getting Started
 
-`Check **test/** for more examples of how to run and visualize SSOM`
+`Check ` **test/** `for more examples of how to run and visualize SSOM`
 
 #### Step 1: Creating and Initializing the SSOM
 
