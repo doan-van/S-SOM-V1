@@ -88,8 +88,7 @@ som.train(input_data)
 - **`input_data`**  
   A NumPy array of shape `(samples, dimensions)`. Each row is a data sample.
 
-
-+++
+---
 
 ### **Important outputs of `SSOM`**
 The `som_grid` and `sample_bmu_mapping` are critical attributes for understanding the result of the SOM training:
